@@ -3,8 +3,10 @@ package business.utils.concretes;
 import business.utils.abstracts.Validator;
 import entities.Customer;
 import adapters.jKPSAdapter;
+import entities.Person;
 
 public class CustomerValidator implements Validator {
+
 
     private jKPSAdapter kpsAdapter;
 
@@ -19,7 +21,7 @@ public class CustomerValidator implements Validator {
         validateFirstNameLength(customer);
         validateLastNameIfEmpty(customer);
         validateIdentityNumberIfEmpty(customer);
-        kpsAdapter.personValidate(customer);
+        kpsAdapter.validate(customer);
 
 
 
