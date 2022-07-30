@@ -1,16 +1,17 @@
 package business.utils.concretes;
 
 import business.utils.abstracts.Validator;
-import dataAccess.abstracts.CustomerDao;
 import entities.Customer;
+import adapters.jKPSAdapter;
 
 public class CustomerValidator implements Validator {
 
+    private jKPSAdapter kpsAdapter;
 
+    public CustomerValidator(jKPSAdapter kpsAdapter) {
+        this.kpsAdapter = kpsAdapter;
+    }
 
-
-    //biz validator içerisinde neden dao istiyoruz ki olmaması lazım
-    //buradaki methodların farklı olması lazım dao olmadan
     @Override
     public boolean validate(Customer customer) throws Exception {
 
@@ -18,6 +19,9 @@ public class CustomerValidator implements Validator {
         validateFirstNameLength(customer);
         validateLastNameIfEmpty(customer);
         validateIdentityNumberIfEmpty(customer);
+        kpsAdapter.personValidate(customer);
+
+
 
         return true;
     }

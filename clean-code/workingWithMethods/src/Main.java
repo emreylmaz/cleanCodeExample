@@ -1,3 +1,4 @@
+import adapters.jKPSAdapter;
 import business.concretes.CustomerManager;
 import business.utils.concretes.CustomerValidator;
 import dataAccess.concretes.HibernateCustomerDao;
@@ -17,7 +18,7 @@ public class Main {
         customer2.setCityId(34);
         customer2.setIdentityNumber("712985012851912051");
 
-        CustomerValidator customerValidator = new CustomerValidator();
+        CustomerValidator customerValidator = new CustomerValidator(new jKPSAdapter());
         CustomerManager customerManager = new CustomerManager(new HibernateCustomerDao(), customerValidator);
         customerManager.add(customer1);
         customerManager.add(customer2);
